@@ -1,0 +1,16 @@
+[user]
+	email = ronchi@qq.com
+	name = Ronchi
+[core]
+	editor = vim
+[color]
+  ui = true
+[push]
+  default = simple
+  autoSetupRemote = true
+[checkout]
+  defaultRemote = origin
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
