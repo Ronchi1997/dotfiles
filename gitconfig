@@ -1,3 +1,6 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [user]
 	email = ronchi@qq.com
 	name = Ronchi

@@ -81,7 +81,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-yellow'
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sublime autojump)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,10 +138,18 @@ fg() {
   fi
 }
 
+alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --lauguage-force=C++'
+
+Cscope() {
+  find $(pwd) -type f -name "*.cpp" -o -name "*.h" -o -name "*.c" > all_files.list
+  cscope -bkq -i all_files.list
+  #rm all_files.list
+}
+
 ######################################################################
 # fasd
 ######################################################################
-alias fasd='$HOME/bin/fasd'
+alias fasd='~/bin/fasd'
 fasd_cd() {
   if [ $# -le 1 ]; then
     fasd "$@"

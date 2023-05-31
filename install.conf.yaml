@@ -12,6 +12,7 @@
     ~/.oh-my-zsh: oh-my-zsh
     ~/.p10k.zsh: p10k.zsh
     ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
     ~/.fonts: fonts
     ~/bin/fasd: fasd
 
