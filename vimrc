@@ -99,18 +99,18 @@ function! VisualSelection() range
   let l:saved_reg = @"
   execute "normal! vgvy"
 
-  let l:pattern = escape(@", "\\/.*'s^~[]")
+  let l:pattern = escape(@", "\\/.*'$^~[]")
   let l:pattern = substitute(l:pattern, "\n$", "", "")
 
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction
 
-map <F4> : call FilelistToggle<CR>
-map <F5> : call UpdateCtags<CR>
+map <F4> : call FilelistToggle()<CR>
+map <F5> : call UpdateCtags()<CR>
 map <F7> : NERDTreeToggle<CR>
 map <F8> : TagbarToggle<CR>
-map <F9> : call RefreshAnsiLog<CR>
+map <F9> : call RefreshAnsiLog()<CR>
 " go to xx.h/xx.cpp from xx.cpp/xx.h
 map <F12> : AV<CR>
 
@@ -123,7 +123,7 @@ function! UpdateCtags()
 endfunction
 
 function! FilelistToggle()
-  "tabnew path_to_filelist
+  tabnew `git rev-parse --show-toplevel`/all_files.list
 endfunction
 
 function! RefreshAnsiLog()

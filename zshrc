@@ -138,7 +138,7 @@ fg() {
   fi
 }
 
-alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --lauguage-force=C++'
+alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
 
 Cscope() {
   find $(pwd) -type f -name "*.cpp" -o -name "*.h" -o -name "*.c" > all_files.list
