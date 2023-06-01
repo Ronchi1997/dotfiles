@@ -144,8 +144,14 @@ export DISPLAY=:0.0
 ######################################################################
 # alias
 ######################################################################
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -A --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias gs='git status'
 alias gc='git checkout'
 alias gd='git diff -w'
@@ -167,7 +173,7 @@ fg() {
   fi
 }
 
-alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
+alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++'
 
 Cscope() {
   find $(pwd) -type f -name "*.cpp" -o -name "*.h" -o -name "*.c" > all_files.list
