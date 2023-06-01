@@ -10,13 +10,16 @@
     ~/.vim: vim
     ~/.zshrc: zshrc
     ~/.oh-my-zsh: oh-my-zsh
+    ~/.antigen: antigen
     ~/.p10k.zsh: p10k.zsh
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.fonts: fonts
+    ~/.fzf: fzf
     ~/bin/fasd: fasd
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [fc-cache -f ~/.fonts, Rebuilding font cache]
+  - [~/.fzf/install --all, Installing fzf]
   - [vim +PluginInstall +qall, Installing vim plugins with Vundle]

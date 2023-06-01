@@ -9,13 +9,13 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -42,13 +42,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="false"
+# DISABLE_LS_COLORS="false"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="false"
+# ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -68,27 +68,59 @@ ENABLE_CORRECTION="false"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-HIST_STAMPS="yyyy-mm-dd"
+# HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Set zsh autosuggestions highlight style
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-yellow'
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+#
+# source $ZSH/oh-my-zsh.sh
 
-source $ZSH/oh-my-zsh.sh
+######################################################################
+# antigen
+######################################################################
+source ~/.antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+
+# Fish-like autosuggestions for zsh
+antigen bundle tarruda/zsh-autosuggestions
+
+bindkey '^ ' autosuggest-accept
+bindkey '^\n' autosuggest-execute
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+# antigen theme agnoster
+
+# Theme: powerlevel10k
+## https://github.com/romkatv/powerlevel10k
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+
+######################################################################
+# User configuration
+######################################################################
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# User configuration
+# Set zsh autosuggestions highlight style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-yellow'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -105,18 +137,15 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+export SYSTEMC_HOME=/home/ronchi/systemc-2.3.3
+export LD_LIBRARY_PATH=/home/ronchi/systemc-2.3.3/lib-linux64:$LD_LIBRARY_PATH
+export DISPLAY=:0.0
 
 ######################################################################
 # alias
 ######################################################################
+alias ..='cd ..'
+alias ...='cd ../..'
 alias gs='git status'
 alias gc='git checkout'
 alias gd='git diff -w'
@@ -171,8 +200,36 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 alias j='z'
 alias jj='zz'
 alias v='f -e vim'
-######################################################################
 
-export SYSTEMC_HOME=/home/ronchi/systemc-2.3.3
-export LD_LIBRARY_PATH=/home/ronchi/systemc-2.3.3/lib-linux64:$LD_LIBRARY_PATH
-export DISPLAY=:0.0
+######################################################################
+# fzf
+######################################################################
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# https://github.com/junegunn/fzf/wiki/Examples
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# cf - fuzzy cd from anywhere
+# ex: cf word1 word2 ... (even part of a file name)
+# zsh autoload function
+cf() {
+  local file
+
+  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+
+  if [[ -n $file ]]
+  then
+    if [[ -d $file ]]
+    then
+      cd -- $file
+    else
+      cd -- ${file:h}
+    fi
+  fi
+}
