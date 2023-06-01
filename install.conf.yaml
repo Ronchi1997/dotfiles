@@ -8,6 +8,7 @@
 - link:
     ~/.vimrc: vimrc
     ~/.vim: vim
+    ~/.bashrc: bashrc
     ~/.zshrc: zshrc
     ~/.oh-my-zsh: oh-my-zsh
     ~/.antigen: antigen
@@ -21,5 +22,5 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [fc-cache -f ~/.fonts, Rebuilding font cache]
-  - [~/.fzf/install --all, Installing fzf]
+  - [~/.fzf/install --no-bash, Installing fzf]
   - [vim +PluginInstall +qall, Installing vim plugins with Vundle]
