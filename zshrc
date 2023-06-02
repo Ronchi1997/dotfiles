@@ -162,7 +162,7 @@ alias gf='git fetch'
 alias gsu='git submodule update --recursive --init'
 
 cd() {
-  builtin cd "$@" && ls -A
+  builtin cd "$@" && la
 }
 
 fg() {
