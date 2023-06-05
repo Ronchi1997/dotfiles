@@ -179,6 +179,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Kocha/vim-systemc'
+Plugin 'vhda/verilog_systemverilog.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -218,5 +220,4 @@ if has("autocmd")
   au BufWritePre * %s/\s\+$//e
   " set files filetype
   au BufNewFile,BufRead *.fl set filetype=perl
-  au BufNewFile,BufRead *.sv set filetype=systemverilog
 endif
