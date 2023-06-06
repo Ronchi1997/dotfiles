@@ -165,6 +165,7 @@ alias gb='git branch'
 alias gp='git pull'
 alias gf='git fetch'
 alias gsu='git submodule update --recursive --init'
+alias rg='rg --no-heading'
 
 cd() {
   builtin cd "$@" && ls -A --color=auto
