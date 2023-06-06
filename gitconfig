@@ -1,11 +1,11 @@
 [core]
-	excludesfile = ~/.gitignore_global
-	autocrlf = input
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
 [user]
-	email = ronchi@qq.com
-	name = Ronchi
+  email = ronchi@qq.com
+  name = Ronchi
 [core]
-	editor = vim
+  editor = vim
 [color]
   ui = true
 [push]
