@@ -217,6 +217,9 @@ alias v='f -e vim'
 # fzf
 ######################################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias fls='fzf --preview '"'"'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || highlight -O ansi -l {} || coderay {} || cat {}) 2> /dev/null | head -500'"'"
+
 # https://github.com/junegunn/fzf/wiki/Examples
 
 # fd - cd to selected directory
