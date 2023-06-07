@@ -16,6 +16,7 @@
     ~/.gitignore_global: gitignore_global
     ~/.fonts: fonts
     ~/.fzf: fzf
+    ~/.tmux: tmux
     ~/.tmux.conf: tmux.conf
     ~/bin/fasd: fasd
 
