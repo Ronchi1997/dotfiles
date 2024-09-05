@@ -118,7 +118,7 @@ function! UpdateCtags()
   let curdir = expand("%:p:h")
   execute ":cd `git rev-parse --show-toplevel`"
   !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++
-  !find $(pwd) -type f -name "*.cpp" -o -name "*.h" -o -name "*.c" > all_files.list
+  !find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > all_files.list
   !cscope -bkq -i all_files.list
   execute ":cd " . curdir
 endfunction

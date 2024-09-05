@@ -8,7 +8,6 @@
 - link:
     ~/.vimrc: vimrc
     ~/.vim: vim
-    ~/.bashrc: bashrc
     ~/.zshrc: zshrc
     ~/.antigen: antigen
     ~/.p10k.zsh: p10k.zsh

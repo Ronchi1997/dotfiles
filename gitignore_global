@@ -39,7 +39,6 @@ Thumbs.db
 # User Custom #
 ###############
 all_files.list
+src.list
 tags
-cscope.out
-cscope.in.out
-cscope.po.out
+*.out

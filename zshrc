@@ -131,6 +131,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-yellow'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -142,8 +143,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-yellow'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export SYSTEMC_HOME=/home/ronchi/systemc-2.3.3
-export LD_LIBRARY_PATH=/home/ronchi/systemc-2.3.3/lib-linux64:$LD_LIBRARY_PATH
+# export SYSTEMC_HOME=/home/ronchi/systemc-2.3.3
+# export LD_LIBRARY_PATH=/home/ronchi/systemc-2.3.3/lib-linux64:$LD_LIBRARY_PATH
 export DISPLAY=:0.0
 
 ######################################################################
@@ -167,9 +168,9 @@ alias gf='git fetch'
 alias gsu='git submodule update --recursive --init'
 alias rg='rg --no-heading'
 
-cd() {
-  builtin cd "$@" && ls -A --color=auto
-}
+# cd() {
+#   builtin cd "$@" && ls -A --color=auto
+# }
 
 fg() {
   if [[ $# -eq 1 && $1 = - ]]; then
@@ -182,7 +183,7 @@ fg() {
 alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++'
 
 Cscope() {
-  find $(pwd) -type f -name "*.cpp" -o -name "*.h" -o -name "*.c" > all_files.list
+  find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > all_files.list
   cscope -bkq -i all_files.list
   #rm all_files.list
 }
@@ -248,3 +249,11 @@ cf() {
     fi
   fi
 }
+
+# start tmux
+if which tmux >/dev/null 2>&1; then
+  test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
+
+# disable ctrl-s hang term output
+stty -ixon
