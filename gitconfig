@@ -2,10 +2,11 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
 [user]
-  email = ronchi@qq.com
-  name = Ronchi
+  email = shuangqi.li@iluvatar.com
+  name = Li Shuangqi
 [core]
   editor = vim
+  timezone = Asia/Shanghai
 [color]
   ui = true
 [push]

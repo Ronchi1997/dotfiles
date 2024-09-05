@@ -17,7 +17,7 @@
     ~/.fzf: fzf
     ~/.tmux: tmux
     ~/.tmux.conf: tmux.conf
-    ~/bin/fasd: fasd
+    ~/.local/bin/fasd: fasd
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
