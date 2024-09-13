@@ -220,4 +220,7 @@ if has("autocmd")
   au BufWritePre * %s/\s\+$//e
   " set files filetype
   au BufNewFile,BufRead *.fl set filetype=perl
+  au BufNewFile,BufRead SConsturct set filetype=python
+  au BufNewFile,BufRead SConscript set filetype=python
+  au BufNewFile,BufRead SConsopts set filetype=python
 endif
