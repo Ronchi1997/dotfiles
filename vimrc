@@ -3,9 +3,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set nu
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
@@ -118,13 +118,13 @@ function! UpdateCtags()
   let curdir = expand("%:p:h")
   execute ":cd `git rev-parse --show-toplevel`"
   !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++
-  !find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > all_files.list
-  !cscope -bkq -i all_files.list
+  !find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > cscope.files
+  !cscope -bR
   execute ":cd " . curdir
 endfunction
 
 function! FilelistToggle()
-  tabnew `git rev-parse --show-toplevel`/all_files.list
+  tabnew `git rev-parse --show-toplevel`/cscope.files
 endfunction
 
 function! RefreshAnsiLog()

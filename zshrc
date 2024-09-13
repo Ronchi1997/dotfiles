@@ -183,10 +183,12 @@ fg() {
 alias Ctags='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++'
 
 Cscope() {
-  find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > all_files.list
-  cscope -bkq -i all_files.list
-  #rm all_files.list
+  find $(pwd) -type f -name "*.hpp" -o -name "*.cpp" -o -name "*.h" -o -name "*.c" -o -name "*.hh" -o -name "*.cc" > cscope.files
+  cscope -bR
+  #rm cscope.files
 }
+
+alias go='cd `git rev-parse --show-toplevel`'
 
 ######################################################################
 # fasd
