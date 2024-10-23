@@ -79,7 +79,7 @@ nnoremap <c-right> <c-w>>
 vnoremap <silent> * :<c-u>call VisualSelection()<CR>/<CR>=@/<CR><CR>
 vnoremap <silent> # :<c-u>call VisualSelection()<CR>?<CR>=@/<CR><CR>
 
-inoremap <tab> <c-n>
+"inoremap <tab> <c-n>
 
 inoremap ( ()<esc>i
 inoremap ) <c-r>=ClosePair(')')<CR>
@@ -108,6 +108,7 @@ endfunction
 
 map <F4> : call FilelistToggle()<CR>
 map <F5> : call UpdateCtags()<CR>
+map <F6> : UndotreeToggle<CR>
 map <F7> : NERDTreeToggle<CR>
 map <F8> : TagbarToggle<CR>
 map <F9> : call RefreshAnsiLog()<CR>
@@ -176,6 +177,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jayli/vim-easycomplete'
+Plugin 'mbbill/undotree'
 Plugin 'majutsushi/tagbar'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -208,6 +211,16 @@ function! LightlineFilename()
   return gitbranch . filename . modified
 endfunction
 
+" Highlight the symbol when holding the cursor
+let g:easycomplete_cursor_word_hl = 1
+" Using nerdfont is highly recommended
+let g:easycomplete_nerd_font = 1
+
+" GoTo code navigation
+nnoremap gr :EasyCompleteReference<CR>
+nnoremap gd :EasyCompleteGotoDefinition<CR>
+nnoremap rn :EasyCompleteRename<CR>
+nnoremap gb :BackToOriginalBuffer<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AutoCmd
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""

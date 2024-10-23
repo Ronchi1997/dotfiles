@@ -258,4 +258,4 @@ if which tmux >/dev/null 2>&1; then
 fi
 
 # disable ctrl-s hang term output
-stty -ixon
+#stty -ixon
